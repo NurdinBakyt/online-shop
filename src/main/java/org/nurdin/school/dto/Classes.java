@@ -1,4 +1,4 @@
-package org.nurdin.school.dto.classes;
+package org.nurdin.school.dto;
 
 import org.nurdin.school.dto.roles.ClassTeacher;
 import org.nurdin.school.dto.roles.Student;

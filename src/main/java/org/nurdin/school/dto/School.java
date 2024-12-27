@@ -1,6 +1,5 @@
-package org.nurdin.school.dto.school;
+package org.nurdin.school.dto;
 
-import org.nurdin.school.dto.classes.Classes;
 import org.nurdin.school.dto.roles.Student;
 import org.nurdin.school.dto.roles.Teacher;
 
