@@ -1,6 +1,6 @@
 package org.nurdin.school.dto.roles;
 
-import org.nurdin.school.dto.classes.Classes;
+import org.nurdin.school.dto.Classes;
 
 import java.util.List;
 

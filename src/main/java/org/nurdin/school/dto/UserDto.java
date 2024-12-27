@@ -5,7 +5,7 @@ public class UserDto {
     private String username;
     private String password;
     private String email;
-    private Role role;
+//    private Role role;
 
     public Long getId() {
         return id;
@@ -39,11 +39,4 @@ public class UserDto {
         this.email = email;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }
