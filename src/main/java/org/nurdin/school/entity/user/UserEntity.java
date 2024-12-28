@@ -10,6 +10,24 @@ public class UserEntity extends BaseEntity {
     private String password;
     private String email;
     private List<RoleEntity> roles;
+    private String phoneNumber;
+    private int age;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public String getEmail() {
         return email;

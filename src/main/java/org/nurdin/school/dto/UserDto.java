@@ -1,11 +1,34 @@
 package org.nurdin.school.dto;
 
+import org.nurdin.school.entity.role.RoleEntity;
+
+import java.util.List;
+
 public class UserDto {
     private Long id;
     private String username;
     private String password;
     private String email;
-//    private Role role;
+    private List<RoleEntity> role;
+    private int age;
+    private String phoneNumber;
+
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public Long getId() {
         return id;
@@ -39,4 +62,11 @@ public class UserDto {
         this.email = email;
     }
 
+    public List<RoleEntity> getRole() {
+        return role;
+    }
+
+    public void setRole(List<RoleEntity> role) {
+        this.role = role;
+    }
 }
