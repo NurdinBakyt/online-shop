@@ -1,7 +1,7 @@
 package org.nurdin.school.util;
 
 import org.nurdin.school.dto.response.RoleResponseDto;
-import org.nurdin.school.entity.role.RoleEntity;
+import org.nurdin.school.entity.RoleEntity;
 
 import java.util.List;
 

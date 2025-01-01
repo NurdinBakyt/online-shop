@@ -1,6 +1,4 @@
-package org.nurdin.school.entity.role;
-
-import org.nurdin.school.entity.BaseEntity;
+package org.nurdin.school.entity;
 
 public class RoleEntity extends BaseEntity {
     private String roleTitle;

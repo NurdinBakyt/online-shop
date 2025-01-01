@@ -1,6 +1,6 @@
 package org.nurdin.school.controller;
 
-import org.nurdin.school.service.roles.user.StudentService;
+import org.nurdin.school.service.roles.StudentService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

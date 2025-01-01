@@ -1,13 +1,15 @@
 package org.nurdin.school.controller;
 
-import org.nurdin.school.dto.UserDto;
 import org.nurdin.school.dto.response.UserDtoResponse;
-import org.nurdin.school.entity.role.RoleEntity;
+import org.nurdin.school.entity.UserEntity;
 import org.nurdin.school.service.UserService;
 import org.nurdin.school.util.UserDTOMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "api/v1/user")
@@ -20,26 +22,34 @@ public class UserController {
         this.userDTOMapper = userDTOMapper;
     }
 
-    @GetMapping(value = "/getUser")
-    public UserDto getUser(@RequestParam Long userId) {
-        return new UserDto();
-    }
 
     @PostMapping(value = "/register")
-    public UserDto addUser(@RequestBody UserDto userDto) {
-        UserDto user = new UserDto();
-        user.setId(userDto.getId());
-        user.setEmail("nrejf");
-        user.setPassword("123456");
-        user.setRole(List.of(new RoleEntity().setRoleTitle("Director")));
-        return user;
+    public ResponseEntity<String> addUser(@RequestBody UserEntity userEntity) {
+        Optional<UserEntity> user = userService.findByEmail(userEntity.getEmail());
+        if (user.isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Такой пользователь уже есть!");
+        }
+        userService.save(userEntity);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body("Пользователь успешно добавлен!");
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<UserDtoResponse> getUserByUsername(@PathVariable String username) {
+        return userService.findByUsername(username)
+                .map(userEntity -> ResponseEntity.ok(userDTOMapper.userDtoToResponse(userEntity)))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     @GetMapping(value = "/getAllUsers")
     public List<UserDtoResponse> getAllUsers() {
-        return userService.getAllUsers()
-                .stream()
-                .map(userDTOMapper)
+        List<UserEntity> users = userService.getAllUsers();
+
+        return users.stream()
+                .map(userDTOMapper::userDtoToResponse)
                 .toList();
     }
 }

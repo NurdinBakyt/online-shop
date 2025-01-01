@@ -1,7 +1,4 @@
-package org.nurdin.school.entity.user;
-
-import org.nurdin.school.entity.BaseEntity;
-import org.nurdin.school.entity.role.RoleEntity;
+package org.nurdin.school.entity;
 
 import java.util.List;
 
@@ -59,5 +56,18 @@ public class UserEntity extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", age=" + age +
+                ", id=" + id +
+                '}';
     }
 }

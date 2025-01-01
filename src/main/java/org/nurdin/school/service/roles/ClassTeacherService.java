@@ -1,4 +1,4 @@
-package org.nurdin.school.service.roles.user;
+package org.nurdin.school.service.roles;
 
 import org.springframework.stereotype.Service;
 
