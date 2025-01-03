@@ -38,10 +38,15 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<UserDtoResponse> getUserByUsername(@PathVariable String username) {
-        return userService.findByUsername(username)
-                .map(userEntity -> ResponseEntity.ok(userDTOMapper.userDtoToResponse(userEntity)))
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    public ResponseEntity<Object> getUserByUsername(@PathVariable String username) {
+        Optional<UserEntity> userEntityOptional = userService.findByUsername(username);
+
+        if (userEntityOptional.isPresent()) {
+            UserDtoResponse userDtoResponse = userDTOMapper.userDtoToResponse(userEntityOptional.get());
+            return ResponseEntity.ok(userDtoResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Такой пользователь не найден!");
+        }
     }
 
     @GetMapping(value = "/getAllUsers")
