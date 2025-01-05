@@ -2,6 +2,7 @@ package org.nurdin.school.service.impl;
 
 import org.nurdin.school.entity.UserEntity;
 import org.nurdin.school.service.UserService;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package org.nurdin.school.dto;
 
-import org.nurdin.school.dto.roles.ClassTeacher;
-import org.nurdin.school.dto.roles.Student;
+import org.nurdin.school.dto.roles.ClassTeacherDTO;
+import org.nurdin.school.dto.roles.StudentDTO;
 
 import java.util.List;
 
@@ -10,14 +10,11 @@ public class Classes {
     /**
      * Это поле классного руководителя
      */
-    private ClassTeacher classTeacher;
+    private ClassTeacherDTO classTeacher;
     /**
      * Это поле список студентов в классе
      */
-    private List<Student> studentList;
-
-    public Classes() {
-    }
+    private List<StudentDTO> studentList;
 
     public Long getId() {
         return id;
@@ -27,19 +24,19 @@ public class Classes {
         this.id = id;
     }
 
-    public ClassTeacher getClassTeacher() {
+    public ClassTeacherDTO getClassTeacher() {
         return classTeacher;
     }
 
-    public void setClassTeacher(ClassTeacher classTeacher) {
+    public void setClassTeacher(ClassTeacherDTO classTeacher) {
         this.classTeacher = classTeacher;
     }
 
-    public List<Student> getStudentList() {
+    public List<StudentDTO> getStudentList() {
         return studentList;
     }
 
-    public void setStudentList(List<Student> studentList) {
+    public void setStudentList(List<StudentDTO> studentList) {
         this.studentList = studentList;
     }
 }

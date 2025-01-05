@@ -2,16 +2,15 @@ package org.nurdin.school.dto.roles;
 
 import java.util.List;
 
-public class Parent {
+public class TeacherDTO {
     private Long id;
     private String name;
     private String surname;
+    private List<String> subject;
     /**
-     * Это родитель ученика.
-     * Я сделал поле List т.к
-     * У него возможно учатся несколько детей в школе
+     * Это поле показывает свободные дни учителя
      */
-    private List<Student> childrensList;
+    private List<String> availableDays;
 
     public Long getId() {
         return id;
@@ -37,11 +36,19 @@ public class Parent {
         this.surname = surname;
     }
 
-    public List<Student> getChildrensList() {
-        return childrensList;
+    public List<String> getSubject() {
+        return subject;
     }
 
-    public void setChildrensList(List<Student> childrensList) {
-        this.childrensList = childrensList;
+    public void setSubject(List<String> subject) {
+        this.subject = subject;
+    }
+
+    public List<String> getAvailableDays() {
+        return availableDays;
+    }
+
+    public void setAvailableDays(List<String> availableDays) {
+        this.availableDays = availableDays;
     }
 }

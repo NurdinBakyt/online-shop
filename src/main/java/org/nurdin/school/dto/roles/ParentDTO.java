@@ -1,19 +1,17 @@
 package org.nurdin.school.dto.roles;
 
-import org.nurdin.school.dto.Classes;
-
 import java.util.List;
 
-public class ClassTeacher {
+public class ParentDTO {
     private Long id;
     private String name;
     private String surname;
-    private int age;
     /**
-     * Список классов у кл.руководителя.
-     * Я сделал List т.к у учителя может быть не один класс
+     * Это родитель ученика.
+     * Я сделал поле List т.к
+     * У него возможно учатся несколько детей в школе
      */
-    private List<Classes> classes;
+    private List<StudentDTO> childrensList;
 
     public Long getId() {
         return id;
@@ -39,19 +37,11 @@ public class ClassTeacher {
         this.surname = surname;
     }
 
-    public int getAge() {
-        return age;
+    public List<StudentDTO> getChildrensList() {
+        return childrensList;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public List<Classes> getClasses() {
-        return classes;
-    }
-
-    public void setClasses(List<Classes> classes) {
-        this.classes = classes;
+    public void setChildrensList(List<StudentDTO> childrensList) {
+        this.childrensList = childrensList;
     }
 }

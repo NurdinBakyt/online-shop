@@ -1,6 +1,6 @@
 package org.nurdin.school.dto.roles;
 
-public class Student {
+public class StudentDTO {
     private Long id;
     private String name;
     private String surname;
