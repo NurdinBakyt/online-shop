@@ -1,24 +1,27 @@
 package org.nurdin.school.service.impl;
 
+import org.nurdin.school.dto.UserDTO;
 import org.nurdin.school.entity.UserEntity;
 import org.nurdin.school.service.UserService;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
     private List<UserEntity> users = new ArrayList<>();
 
     @Override
-    public UserEntity save(UserEntity user) {
-        long newId = users.isEmpty() ? 1 : users.get(users.size() - 1).getId() + 1;
-        user.setId(newId);
-
+    public UserEntity register(UserEntity user) {
         users.add(user);
+        for (UserEntity userEntity : users) {
+            if (userEntity != null) {
+                System.out.println(userEntity);
+            } else {
+                System.out.println("ошибка еблан");
+            }
+        }
         return user;
     }
 
@@ -28,15 +31,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserEntity> findByUsername(String username) {
-        return users.stream()
-                .filter(u -> u.getUsername().equals(username))
-                .findAny();
+    public UserEntity findByUsername(String email) {
+        return null;
     }
 
     @Override
-    public Optional<UserEntity> findByEmail(String email) {
-        return Optional.empty();
+    public UserEntity findByEmail(String email) {
+        for (UserEntity user : users) {
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null;
     }
 
     @Override

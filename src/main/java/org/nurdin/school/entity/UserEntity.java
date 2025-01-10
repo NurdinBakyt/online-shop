@@ -1,30 +1,13 @@
 package org.nurdin.school.entity;
 
-import java.util.List;
+import org.nurdin.school.dto.Role;
 
-public class UserEntity extends BaseEntity {
-    private String username;
-    private String password;
+
+public class UserEntity  {
+    private Long id;
     private String email;
-    private List<RoleEntity> roles;
-    private String phoneNumber;
-    private int age;
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+    private String password;
+    private Role roles;
 
     public String getEmail() {
         return email;
@@ -32,22 +15,6 @@ public class UserEntity extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public List<RoleEntity> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RoleEntity> roles) {
-        this.roles = roles;
     }
 
     public String getPassword() {
@@ -58,15 +25,28 @@ public class UserEntity extends BaseEntity {
         this.password = password;
     }
 
+    public void setRoles(Role roles) {
+        this.roles = roles;
+    }
+
+    public Role getRoles() {
+        return roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
-                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", roles=" + roles +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", age=" + age +
                 ", id=" + id +
                 '}';
     }

@@ -1,15 +1,14 @@
 package org.nurdin.school.controller;
 
+import org.nurdin.school.dto.UserDTO;
 import org.nurdin.school.dto.response.UserDtoResponse;
 import org.nurdin.school.entity.UserEntity;
 import org.nurdin.school.service.UserService;
 import org.nurdin.school.util.UserDTOMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "api/v1/user")
@@ -24,37 +23,24 @@ public class UserController {
 
 
     @PostMapping(value = "/register")
-    public ResponseEntity<String> addUser(@RequestBody UserEntity userEntity) {
-        Optional<UserEntity> user = userService.findByEmail(userEntity.getEmail());
-        if (user.isPresent()) {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body("Такой пользователь уже есть!");
-        }
-        userService.save(userEntity);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body("Пользователь успешно добавлен!");
+    public ResponseEntity<UserDtoResponse> addUser(@RequestBody UserDTO userDTO) {
+        userService.register(UserDTOMapper.userDTOtoEntity(userDTO));
+        return ResponseEntity.ok(UserDTOMapper.userDtoToResponse(userDTO));
     }
 
-    @GetMapping("/{username}")
-    public ResponseEntity<Object> getUserByUsername(@PathVariable String username) {
-        Optional<UserEntity> userEntityOptional = userService.findByUsername(username);
-
-        if (userEntityOptional.isPresent()) {
-            UserDtoResponse userDtoResponse = userDTOMapper.userDtoToResponse(userEntityOptional.get());
-            return ResponseEntity.ok(userDtoResponse);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Такой пользователь не найден!");
-        }
+    @GetMapping("/{email}")
+    public ResponseEntity<UserDtoResponse> getUserByEmail(@PathVariable String email)
+    {
+        UserDTO user = UserDTOMapper.userEntityToDTO(userService.findByEmail(email));
+        return ResponseEntity.ok(UserDTOMapper.userDtoToResponse(user));
     }
 
-    @GetMapping(value = "/getAllUsers")
+    @GetMapping(value = "/get-all-users")
     public List<UserDtoResponse> getAllUsers() {
         List<UserEntity> users = userService.getAllUsers();
-
         return users.stream()
-                .map(userDTOMapper::userDtoToResponse)
+                .map(userDTOMapper::userEntityToDTOResponse)
                 .toList();
     }
+
 }
