@@ -12,3 +12,4 @@ public class RoleEntity extends BaseEntity {
         return this;
     }
 }
+
