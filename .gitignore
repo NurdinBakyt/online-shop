@@ -19,9 +19,6 @@ target/
 *.iml
 *.ipr
 
-"\321\202\320\263\320\272"
-\321\202\320\263\320\272.pub
-
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -35,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 .gitignore
+/src/main/resources/application-local.properties/

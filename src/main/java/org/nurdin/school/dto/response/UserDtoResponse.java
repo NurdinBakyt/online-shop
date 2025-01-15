@@ -1,15 +1,15 @@
 package org.nurdin.school.dto.response;
 
-import org.nurdin.school.dto.Role;
+import org.nurdin.school.dto.RoleDTO;
 
 
 public class UserDtoResponse {
     private Long id;
     private String email;
-    private Role roles;
+    private RoleDTO roles;
 
     // Конструктор с параметрами
-    public UserDtoResponse(Long id, String email, Role roles) {
+    public UserDtoResponse(Long id, String email, RoleDTO roles) {
         this.id = id;
         this.email = email;
         this.roles = roles;
@@ -35,11 +35,11 @@ public class UserDtoResponse {
         this.email = email;
     }
 
-    public Role getRoles() {
+    public RoleDTO getRoles() {
         return roles;
     }
 
-    public void setRoles(Role roles) {
+    public void setRoles(RoleDTO roles) {
         this.roles = roles;
     }
 

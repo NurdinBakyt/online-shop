@@ -29,12 +29,11 @@ public class UserDTOMapper {
     }
     // Этот метод делает маппинг, DTO в entity
     public static UserDTO userEntityToDTO(UserEntity userEntity) {
-        System.out.println("Mapping user entity: " + userEntity);
         UserDTO userDTO = new UserDTO();
         userDTO.setId(userEntity.getId());
         userDTO.setEmail(userEntity.getEmail());
+        userDTO.setPassword(userEntity.getPassword());
         userDTO.setRoles(userEntity.getRoles());
-        System.out.println("Mapped user DTO: " + userDTO);
         return userDTO;
     }
     // А этот метод наоборот Entity в DTO
@@ -42,6 +41,7 @@ public class UserDTOMapper {
         UserEntity userEntity = new UserEntity();
         userEntity.setId(userDTO.getId());
         userEntity.setEmail(userDTO.getEmail());
+        userEntity.setPassword(userDTO.getPassword());
         userEntity.setRoles(userDTO.getRoles());
         return userEntity;
     }
@@ -51,7 +51,6 @@ public class UserDTOMapper {
         userDtoResponse.setId(userEntity.getId());
         userDtoResponse.setEmail(userEntity.getEmail());
         userDtoResponse.setRoles(userEntity.getRoles());
-        System.out.println("Mapped user DTO: " + userDtoResponse);
         return userDtoResponse;
     }
 }

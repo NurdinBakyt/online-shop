@@ -2,6 +2,7 @@ package org.nurdin.school.service.impl;
 
 import org.nurdin.school.dto.UserDTO;
 import org.nurdin.school.entity.UserEntity;
+import org.nurdin.school.repository.UserRepository;
 import org.nurdin.school.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -10,19 +11,14 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private List<UserEntity> users = new ArrayList<>();
+    private final UserRepository userRepository;
 
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
     @Override
     public UserEntity register(UserEntity user) {
-        users.add(user);
-        for (UserEntity userEntity : users) {
-            if (userEntity != null) {
-                System.out.println(userEntity);
-            } else {
-                System.out.println("ошибка еблан");
-            }
-        }
-        return user;
+        return userRepository.save(user);
     }
 
     @Override
@@ -37,12 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findByEmail(String email) {
-        for (UserEntity user : users) {
-            if (user.getEmail().equals(email)) {
-                return user;
-            }
-        }
-        return null;
+        return userRepository.findByEmail(email);
     }
 
     @Override
@@ -72,6 +63,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserEntity> getAllUsers() {
-        return new ArrayList<>(users);
+        return userRepository.findAll();
     }
 }

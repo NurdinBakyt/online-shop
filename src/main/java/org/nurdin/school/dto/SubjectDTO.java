@@ -2,7 +2,7 @@ package org.nurdin.school.dto;
 
 import org.nurdin.school.dto.roles.TeacherDTO;
 
-public class Subject {
+public class SubjectDTO {
     private String name;
     private int hoursPerWeek;
     private TeacherDTO teacher;

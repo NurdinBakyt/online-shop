@@ -1,11 +1,12 @@
 package org.nurdin.school.dto;
 
 
-public class UserDTO {
-    private Long id;
+import org.nurdin.school.entity.BaseEntity;
+
+public class UserDTO extends BaseEntity {
     private String email;
     private String password;
-    private Role roles;
+    private RoleDTO roles;
 
     public String getPassword() {
         return password;
@@ -15,11 +16,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public Role getRoles() {
+    public RoleDTO getRoles() {
         return roles;
     }
 
-    public void setRoles(Role roles) {
+    public void setRoles(RoleDTO roles) {
         this.roles = roles;
     }
 

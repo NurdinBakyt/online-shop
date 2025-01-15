@@ -1,13 +1,16 @@
 package org.nurdin.school.entity;
 
-import org.nurdin.school.dto.Role;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import org.nurdin.school.dto.RoleDTO;
 
 
-public class UserEntity  {
-    private Long id;
+@Entity
+@Table(name = "users")
+public class UserEntity extends BaseEntity {
     private String email;
     private String password;
-    private Role roles;
+    private RoleDTO roles;
 
     public String getEmail() {
         return email;
@@ -25,11 +28,11 @@ public class UserEntity  {
         this.password = password;
     }
 
-    public void setRoles(Role roles) {
+    public void setRoles(RoleDTO roles) {
         this.roles = roles;
     }
 
-    public Role getRoles() {
+    public RoleDTO getRoles() {
         return roles;
     }
 

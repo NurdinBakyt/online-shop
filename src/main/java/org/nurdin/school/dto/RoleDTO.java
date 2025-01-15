@@ -1,6 +1,6 @@
 package org.nurdin.school.dto;
 
-public enum Role {
+public enum RoleDTO {
     GUEST,
     PARENT,
     EMPLOYEE

@@ -5,7 +5,7 @@ import org.nurdin.school.dto.roles.StudentDTO;
 
 import java.util.List;
 
-public class Classes {
+public class ClassesDTO {
     private Long id;
     /**
      * Это поле классного руководителя

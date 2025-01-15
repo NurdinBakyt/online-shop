@@ -1,5 +1,10 @@
 package org.nurdin.school.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "roles")
 public class RoleEntity extends BaseEntity {
     private String roleTitle;
 
@@ -12,4 +17,3 @@ public class RoleEntity extends BaseEntity {
         return this;
     }
 }
-
