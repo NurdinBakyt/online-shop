@@ -18,6 +18,7 @@ public class DirectorController {
     public DirectorController(DirectorService directorService) {
         this.directorService = directorService;
     }
+
     @GetMapping("/application/{directorId}")
     public ResponseEntity<List<EmployeeEntity>> findBidsByDirectorId(@PathVariable("directorId") Long directorId) {
         List<EmployeeEntity> employeeEntities = directorService.getEmployeesBid(directorId);

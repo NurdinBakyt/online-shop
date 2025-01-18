@@ -1,5 +1,7 @@
 package org.nurdin.school.dto;
 
+import org.nurdin.school.entity.DirectorEntity;
+
 public class EmployeeDTO {
     private Long id;
     private String name;
@@ -9,6 +11,7 @@ public class EmployeeDTO {
     private String passportPhoto;
     private String resume;
     private int age;
+    private DirectorDTO directorDTO;
 
     public Long getId() {
         return id;
@@ -74,6 +77,14 @@ public class EmployeeDTO {
         this.age = age;
     }
 
+    public DirectorDTO getDirectorDTO() {
+        return directorDTO;
+    }
+
+    public void setDirectorDTO(DirectorDTO directorDTO) {
+        this.directorDTO = directorDTO;
+    }
+
     @Override
     public String toString() {
         return "EmployeeDTO{" +
@@ -85,6 +96,7 @@ public class EmployeeDTO {
                 ", passportPhoto='" + passportPhoto + '\'' +
                 ", resume='" + resume + '\'' +
                 ", age=" + age +
+                ", directorDTO=" + directorDTO +
                 '}';
     }
 }
