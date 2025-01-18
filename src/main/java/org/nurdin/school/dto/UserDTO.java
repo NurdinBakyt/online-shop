@@ -1,12 +1,15 @@
 package org.nurdin.school.dto;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.nurdin.school.entity.BaseEntity;
 
+@Schema(description = "Dto для внутренней системы с полным наборам полей")
 public class UserDTO extends BaseEntity {
     private String email;
     private String password;
-    private RoleDTO roles;
+    @Schema(description = "1)Гость " + "2)Родитель " + " 3) Сотрудник школы")
+    private RoleDTO role;
 
     public String getPassword() {
         return password;
@@ -16,12 +19,12 @@ public class UserDTO extends BaseEntity {
         this.password = password;
     }
 
-    public RoleDTO getRoles() {
-        return roles;
+    public RoleDTO getRole() {
+        return role;
     }
 
-    public void setRoles(RoleDTO roles) {
-        this.roles = roles;
+    public void setRole(RoleDTO role) {
+        this.role = role;
     }
 
     public String getEmail() {
@@ -46,7 +49,7 @@ public class UserDTO extends BaseEntity {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", roles=" + roles +
+                ", roles=" + role +
                 '}';
     }
 }

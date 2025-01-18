@@ -1,11 +1,13 @@
 package org.nurdin.school.dto.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.nurdin.school.dto.RoleDTO;
 
-
+@Schema(description = "Dto с отсутствующим полям пароля, для ответа к пользователю  ")
 public class UserDtoResponse {
     private Long id;
     private String email;
+    @Schema(description = "1)Гость " + "2)Родитель " + " 3) Сотрудник школы")
     private RoleDTO roles;
 
     // Конструктор с параметрами
