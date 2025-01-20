@@ -1,13 +1,30 @@
 package org.nurdin.school.dto.response;
 
 public class RoleResponseDto {
-    private String role;
+    private Long id;
+    private String title;
 
-    public String getRole() {
-        return role;
+    public RoleResponseDto(Long id, String title) {
+        this.id = id;
+        this.title = title;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public RoleResponseDto() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Long getRole() {
+        return id;
+    }
+
+    public void setRole(Long id) {
+        this.id = id;
     }
 }

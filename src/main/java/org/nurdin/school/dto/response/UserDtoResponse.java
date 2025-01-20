@@ -1,22 +1,31 @@
 package org.nurdin.school.dto.response;
 
 import org.nurdin.school.dto.RoleDTO;
+import org.nurdin.school.enums.UserStatus;
+
+import java.time.LocalDateTime;
+import java.util.Set;
 
 
 public class UserDtoResponse {
     private Long id;
     private String email;
-    private RoleDTO roles;
+    private String username;
+    private Set<RoleDTO> roles;
+    private LocalDateTime createdAt;
+    private UserStatus userStatus;
 
     // Конструктор с параметрами
-    public UserDtoResponse(Long id, String email, RoleDTO roles) {
+    public UserDtoResponse(Long id, Set<RoleDTO> roles) {
         this.id = id;
-        this.email = email;
         this.roles = roles;
     }
 
     // Пустой конструктор (нужен для Spring, Jackson и т.д.)
     public UserDtoResponse() {
+    }
+
+    public UserDtoResponse(Long id, String roleTitle) {
     }
 
     public Long getId() {
@@ -35,12 +44,35 @@ public class UserDtoResponse {
         this.email = email;
     }
 
-    public RoleDTO getRoles() {
+    public Set<RoleDTO> getRoles() {
         return roles;
     }
-
-    public void setRoles(RoleDTO roles) {
+    public void setRoles(Set<RoleDTO> roles) {
         this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
     }
 
     @Override
@@ -48,7 +80,10 @@ public class UserDtoResponse {
         return "UserDtoResponse{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
                 ", roles=" + roles +
+                ", createdAt=" + createdAt +
+                ", userStatus=" + userStatus +
                 '}';
     }
 }

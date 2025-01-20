@@ -31,5 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
-.gitignore
 /src/main/resources/application-local.properties
+/Users/nurdinbakytbekov/Desktop/online-shop/.gitignore
+/Users/nurdinbakytbekov/Desktop/online-shop/src/main/resources/application-local.properties
