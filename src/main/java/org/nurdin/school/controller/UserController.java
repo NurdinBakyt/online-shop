@@ -24,23 +24,21 @@ public class UserController {
 
     @PostMapping(value = "/register")
     public UserDtoResponse addUser(@RequestBody UserDTO userDTO) {
-        return userDTOMapper.userEntityToDTOResponse(
+        return UserDTOMapper.userEntityToDTOResponse(
                 userService.register(UserDTOMapper.userDTOtoEntity(userDTO))
         );
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<UserDtoResponse> getUserByEmail(@PathVariable String email)
-    {
-        UserDTO user = UserDTOMapper.userEntityToDTO(userService.findByEmail(email));
-        return ResponseEntity.ok(UserDTOMapper.userDtoToResponse(user));
+    @GetMapping("email")
+    public ResponseEntity<UserDtoResponse> getUserByEmail(@RequestBody String email) {
+        return ResponseEntity.ok(UserDTOMapper.userEntityToDTOResponse(userService.findByEmail(email)));
     }
 
     @GetMapping(value = "/get-all-users")
     public List<UserDtoResponse> getAllUsers() {
         List<UserEntity> users = userService.getAllUsers();
         return users.stream()
-                .map(userDTOMapper::userEntityToDTOResponse)
+                .map(UserDTOMapper::userEntityToDTOResponse)
                 .toList();
     }
 

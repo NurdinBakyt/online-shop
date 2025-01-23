@@ -1,6 +1,5 @@
 package org.nurdin.school.dto;
 
-import org.nurdin.school.dto.roles.TeacherDTO;
 
 public class SubjectDTO {
     private String name;

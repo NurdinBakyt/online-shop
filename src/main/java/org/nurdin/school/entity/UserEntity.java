@@ -1,16 +1,43 @@
 package org.nurdin.school.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import org.nurdin.school.dto.RoleDTO;
+import jakarta.persistence.*;
+import org.nurdin.school.enums.UserStatus;
+
+import java.time.LocalDateTime;
+import java.util.Set;
 
 
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
+    private String username;
     private String email;
     private String password;
-    private RoleDTO roles;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private UserStatus userStatus;
+    private LocalDateTime createdAt;
+
+    @ManyToMany
+    @JoinTable(
+            name = "m2m_users_roles",
+            joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id")
+    )
+    private Set<RoleEntity> roles;
+
+    public UserEntity(){
+
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getEmail() {
         return email;
@@ -28,12 +55,12 @@ public class UserEntity extends BaseEntity {
         this.password = password;
     }
 
-    public void setRoles(RoleDTO roles) {
-        this.roles = roles;
+    public Set<RoleEntity> getRoles() {
+        return roles;
     }
 
-    public RoleDTO getRoles() {
-        return roles;
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -44,12 +71,31 @@ public class UserEntity extends BaseEntity {
         this.id = id;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    @PrePersist
+    public void setCreatedAt() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
+    }
+
+
     @Override
     public String toString() {
         return "UserEntity{" +
+                "email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
                 ", roles=" + roles +
+                ", createdAt=" + createdAt +
+                ", userStatus=" + userStatus +
                 ", id=" + id +
                 '}';
     }
