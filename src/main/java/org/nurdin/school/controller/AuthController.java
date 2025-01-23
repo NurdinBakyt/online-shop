@@ -17,24 +17,15 @@ import java.util.List;
 public class AuthController {
 
     @GetMapping("/user-status")
-    public ResponseEntity<List<String>> getUserStatuses() {
-        List<String> statuses = Arrays.stream(UserStatus.values())
-                .map(Enum::name)
-                .toList();
-        return ResponseEntity.ok(statuses);
+    public ResponseEntity<UserStatus[]> getStatus() {
+        return ResponseEntity.ok(UserStatus.values());
     }
     @GetMapping("/user-register-roles")
-    public ResponseEntity<List<String>> getUserRegisterRoles() {
-        List<String> reg_roles = Arrays.stream(RolesRegisterEnum.values())
-                .map(Enum::name)
-                .toList();
-        return ResponseEntity.ok(reg_roles);
+    public ResponseEntity<RolesRegisterEnum[]> getUserRegisterRoles() {
+        return ResponseEntity.ok(RolesRegisterEnum.values());
     }
     @GetMapping("/user-roles")
-    public ResponseEntity<List<String>> getUserRoles() {
-        List<String> reg_roles = Arrays.stream(RolesEnum.values())
-                .map(Enum::name)
-                .toList();
-        return ResponseEntity.ok(reg_roles);
+    public ResponseEntity<RolesEnum[]> getUserRoles() {
+        return ResponseEntity.ok(RolesEnum.values());
     }
 }
