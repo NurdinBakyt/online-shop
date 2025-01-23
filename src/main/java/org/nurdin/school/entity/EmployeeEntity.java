@@ -1,25 +1,56 @@
 package org.nurdin.school.entity;
 
 import jakarta.persistence.*;
+import org.nurdin.school.enums.EmployeeStatus;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
+// Таблица которая описывает данные о пользователях которые хотят трудоустроится
+// в школу.
 @Entity
 @Table(name = "job_applications")
 public class EmployeeEntity extends BaseEntity {
     private String name;
     private String surname;
     private String phone;
-    private String photo;
-    private String passportPhoto;
     private String resume;
     private int age;
+    private String email;
+    private LocalDateTime createdAt;
+
+    @Column(name = "employee_status")
+    @Enumerated(EnumType.STRING)
+    private EmployeeStatus employeeStatus;
 
     @ManyToOne
     @JoinColumn(name = "director_id")
     private DirectorEntity directorEntity;
 
     public EmployeeEntity() {
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public EmployeeStatus getEmployeeStatus() {
+        return employeeStatus;
+    }
+
+    public void setEmployeeStatus(EmployeeStatus employeeStatus) {
+        this.employeeStatus = employeeStatus;
     }
 
     public String getName() {
@@ -44,22 +75,6 @@ public class EmployeeEntity extends BaseEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getPassportPhoto() {
-        return passportPhoto;
-    }
-
-    public void setPassportPhoto(String passportPhoto) {
-        this.passportPhoto = passportPhoto;
     }
 
     public String getResume() {
@@ -92,10 +107,10 @@ public class EmployeeEntity extends BaseEntity {
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phone='" + phone + '\'' +
-                ", photo='" + photo + '\'' +
-                ", passportPhoto='" + passportPhoto + '\'' +
                 ", resume='" + resume + '\'' +
                 ", age=" + age +
+                ", email='" + email + '\'' +
+                ", employeeStatus=" + employeeStatus +
                 ", directorEntity=" + directorEntity +
                 ", id=" + id +
                 '}';

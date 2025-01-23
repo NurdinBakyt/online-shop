@@ -13,7 +13,6 @@ public class EmployeeMapper {
         employeeEntity.setName(employeeDTO.getName());
         employeeEntity.setAge(employeeDTO.getAge());
         employeeEntity.setPhone(employeeDTO.getPhone());
-        employeeEntity.setPassportPhoto(employeeDTO.getPassportPhoto());
         employeeEntity.setResume(employeeDTO.getResume());
         employeeEntity.setSurname(employeeDTO.getSurname());
 //      DirectorEntity ==> DirectorDTO
@@ -29,7 +28,6 @@ public class EmployeeMapper {
         employeeDTO.setAge(employeeEntity.getAge());
         employeeDTO.setPhone(employeeEntity.getPhone());
         employeeDTO.setResume(employeeEntity.getResume());
-        employeeDTO.setPassportPhoto(employeeEntity.getPassportPhoto());
         return employeeDTO;
     }
 }

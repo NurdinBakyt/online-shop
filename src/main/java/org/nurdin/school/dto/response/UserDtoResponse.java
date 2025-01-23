@@ -63,8 +63,8 @@ public class UserDtoResponse {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt() {
+        this.createdAt = LocalDateTime.now();
     }
 
     public UserStatus getUserStatus() {

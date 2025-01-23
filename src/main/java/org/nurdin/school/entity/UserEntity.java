@@ -27,11 +27,12 @@ public class UserEntity extends BaseEntity {
     )
     private Set<RoleEntity> roles;
 
-    public String getUsername() {
-        return username;
-    }
     public UserEntity(){
 
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {
@@ -73,9 +74,9 @@ public class UserEntity extends BaseEntity {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    @PrePersist
+    public void setCreatedAt() {
+        this.createdAt = LocalDateTime.now();
     }
 
     public UserStatus getUserStatus() {

@@ -26,8 +26,7 @@ public class UserDTOMapper {
                 .map(roleDTO -> new RoleDTO(roleDTO.getId(), roleDTO.getTitle()))
                 .collect(Collectors.toSet()));
         userDtoResponse.setUserStatus(userDTO.getUserStatus());
-        userDtoResponse.setCreatedAt(userDTO.getLocalDateTime());
-
+        userDtoResponse.setCreatedAt();
         return userDtoResponse;
     }
 
@@ -42,7 +41,7 @@ public class UserDTOMapper {
                 .map(x -> new RoleDTO(x.getId(), x.getTitle()))
                 .collect(Collectors.toSet()));
         userDTO.setUserStatus(userEntity.getUserStatus());
-        userDTO.setLocalDateTime(userDTO.getLocalDateTime());
+        userDTO.setCreatedAt();
         return userDTO;
     }
 
@@ -57,7 +56,7 @@ public class UserDTOMapper {
                 .map(x -> new RoleEntity(x.getId(), x.getTitle()))
                 .collect(Collectors.toSet()));
         userEntity.setUserStatus(userDTO.getUserStatus());
-        userEntity.setCreatedAt(userDTO.getLocalDateTime());
+        userEntity.setCreatedAt();
         return userEntity;
     }
 
@@ -71,7 +70,7 @@ public class UserDTOMapper {
                 .map(x -> new RoleDTO(x.getId(), x.getTitle()))
                 .collect(Collectors.toSet()));
         userDtoResponse.setUserStatus(userEntity.getUserStatus());
-        userDtoResponse.setCreatedAt(userEntity.getCreatedAt());
+        userDtoResponse.setCreatedAt();
         return userDtoResponse;
     }
 }

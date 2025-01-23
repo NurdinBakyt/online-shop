@@ -25,12 +25,12 @@ public class UserDTO {
         this.username = username;
     }
 
-    public LocalDateTime getLocalDateTime() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setLocalDateTime(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt() {
+        this.createdAt = LocalDateTime.now();
     }
 
     public UserStatus getUserStatus() {
