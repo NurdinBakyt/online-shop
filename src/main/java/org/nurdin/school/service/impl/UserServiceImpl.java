@@ -1,6 +1,5 @@
 package org.nurdin.school.service.impl;
 
-import org.nurdin.school.dto.UserDTO;
 import org.nurdin.school.entity.RoleEntity;
 import org.nurdin.school.entity.UserEntity;
 import org.nurdin.school.repository.RoleRepository;
@@ -8,10 +7,7 @@ import org.nurdin.school.repository.UserRepository;
 import org.nurdin.school.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,7 +23,7 @@ public class UserServiceImpl implements UserService {
     public UserEntity register(UserEntity user) {
         Set<RoleEntity> roles = user.getRoles()
                 .stream()
-                .map(x -> roleRepository.findByTitle(x.getTitle())
+                .map(x -> roleRepository.getByTitle(x.getTitle())
                         .orElseThrow(() -> new RuntimeException("Роль не найдена")))
                 .collect(Collectors.toSet());
 
@@ -37,8 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity findById(Long id) {
-        return null;
+    public Optional<UserEntity> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     @Override

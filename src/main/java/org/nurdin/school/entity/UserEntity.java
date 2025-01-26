@@ -17,6 +17,7 @@ public class UserEntity extends BaseEntity {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
+    @Column(name = "createdat")
     private LocalDateTime createdAt;
 
     @ManyToMany

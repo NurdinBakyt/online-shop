@@ -1,13 +1,13 @@
 package org.nurdin.school.service;
 
-import org.nurdin.school.dto.UserDTO;
 import org.nurdin.school.entity.UserEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     UserEntity register(UserEntity user);
-    UserEntity findById(Long id);
+    Optional<UserEntity> findById(Long id);
     UserEntity findByUsername(String username);
     UserEntity findByEmail(String email);
     UserEntity updateUser(UserEntity user);

@@ -1,5 +1,6 @@
 package org.nurdin.school.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -10,6 +11,7 @@ public class RoleEntity extends BaseEntity {
     private String title;
 
     @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<UserEntity> users;
 
     public RoleEntity(Long id,String title) {
