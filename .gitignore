@@ -18,6 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
+.gitignore
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +32,8 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/resources/application.properties
+src/main/resources/application-local.properties
+/Users/nurdinbakytbekov/Desktop/online-shop/.gitignore
+/Users/nurdinbakytbekov/Desktop/online-shop/src/main/resources/application-local.properties
+src/main/resources/*.properties
