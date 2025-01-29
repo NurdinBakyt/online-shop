@@ -1,11 +1,13 @@
 package org.nurdin.school.entity;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import org.nurdin.school.enums.StatusOfBid;
 
 @Entity
 @Table (name = "bids_for_work")
+@Schema(description = "Заявка на работу")
 public class BidForWorkEntity {
 
     @Id
@@ -23,8 +25,10 @@ public class BidForWorkEntity {
     @Column(name = "info_of_employee")
     private String infoOfEmployee;
     @Column(name = "documents_of_employee")
+    @Schema(description = "Документы сотрудника")
     private String documentsOfEmployee;
     @Column(name = "bid_status")
+    @Schema(description = "Статус заявка, по типу откланён или принят")
     private StatusOfBid bidStatus;
 
     @Column(name = "email")
