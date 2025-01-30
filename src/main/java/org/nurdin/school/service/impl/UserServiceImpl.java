@@ -1,7 +1,5 @@
 package org.nurdin.school.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
-import org.nurdin.school.dto.UserDTO;
 import org.nurdin.school.entity.RoleEntity;
 import org.nurdin.school.entity.UserEntity;
 import org.nurdin.school.repository.RoleRepository;
@@ -9,10 +7,7 @@ import org.nurdin.school.repository.UserRepository;
 import org.nurdin.school.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,22 +19,21 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
+
     @Override
     public UserEntity register(UserEntity user) {
         Set<RoleEntity> roles = user.getRoles()
                 .stream()
-                .map(x -> roleRepository.findByTitle(x.getTitle())
+                .map(x -> roleRepository.getByTitle(x.getTitle())
                         .orElseThrow(() -> new RuntimeException("Роль не найдена")))
                 .collect(Collectors.toSet());
-
         user.setRoles(roles);
-
         return userRepository.save(user);
     }
 
     @Override
-    public UserEntity findById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    public Optional<UserEntity> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     @Override
@@ -53,12 +47,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity updateUserName(String username, String newUsername) {
+    public UserEntity updateUsername(String username, String newusername) {
         UserEntity user = userRepository.findByUsername(username);
-        user.setUsername(newUsername);
+        user.setUsername(newusername);
         return userRepository.save(user);
     }
-
 
     @Override
     public UserEntity updateUserPassword(String email, String newPassword) {
@@ -69,26 +62,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity deleteUser(Long id) {
-        UserEntity user = userRepository.findById(id).orElse(null);
-        if(user != null) {
-            userRepository.delete(user);
-        }
-        return user;
+        return deleteUserEntity(userRepository.findById(id).orElse(null));
     }
 
     @Override
     public UserEntity deleteUserByName(String username) {
-        UserEntity user = userRepository.findByUsername(username);
-        if(user != null) {
-            userRepository.delete(user);
-        }
-        return user;
+        return deleteUserEntity(userRepository.findByUsername(username));
     }
 
     @Override
     public UserEntity deleteUserByEmail(String email) {
-        UserEntity user = userRepository.findByEmail(email);
-        if(user != null) {
+        return deleteUserEntity(userRepository.findByEmail(email));
+    }
+
+    private UserEntity deleteUserEntity(UserEntity user) {
+        if (user != null) {
             userRepository.delete(user);
         }
         return user;

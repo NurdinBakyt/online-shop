@@ -1,15 +1,19 @@
 package org.nurdin.school.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
 @Entity
 @Table(name = "roles")
+@Schema(description = "")
 public class RoleEntity extends BaseEntity {
     private String title;
 
     @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<UserEntity> users;
 
     public RoleEntity(Long id,String title) {

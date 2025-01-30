@@ -2,16 +2,16 @@ package org.nurdin.school.util;
 
 import org.nurdin.school.dto.RoleDTO;
 import org.nurdin.school.dto.UserDTO;
-import org.nurdin.school.dto.response.RoleResponseDto;
 import org.nurdin.school.dto.response.UserDtoResponse;
 import org.nurdin.school.entity.RoleEntity;
 import org.nurdin.school.entity.UserEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-@Service
+@Component
 public class UserDTOMapper {
     //   этот метод,делает mapping userDto в responseDto. тоесть то что мы отдаем пользователю и здесь я не вывожу пароль ведь
     //   пользователю этого не нужно показывать.

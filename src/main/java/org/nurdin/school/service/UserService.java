@@ -3,13 +3,14 @@ package org.nurdin.school.service;
 import org.nurdin.school.entity.UserEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     UserEntity register(UserEntity user);
-    UserEntity findById(Long id);
+    Optional<UserEntity> findById(Long id);
     UserEntity findByUsername(String username);
     UserEntity findByEmail(String email);
-    UserEntity updateUserName(String username, String newUsername);
+    UserEntity updateUsername(String username, String newusername);
     UserEntity updateUserPassword(String email, String newPassword);
     UserEntity deleteUser(Long id);
     UserEntity deleteUserByName(String username);

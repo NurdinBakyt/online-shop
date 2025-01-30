@@ -1,4 +1,4 @@
 package org.nurdin.school.service;
 
-public interface ClassTeacher {
+public interface ClassTeacherService {
 }
