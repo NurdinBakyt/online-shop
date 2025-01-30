@@ -47,9 +47,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity updateUsername(String username, String newusername) {
+    public UserEntity updateUsername(String username, String newUsername) {
         UserEntity user = userRepository.findByUsername(username);
-        user.setUsername(newusername);
+        user.setUsername(newUsername);
         return userRepository.save(user);
     }
 

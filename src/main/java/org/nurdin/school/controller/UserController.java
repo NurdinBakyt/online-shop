@@ -41,9 +41,6 @@ public class UserController {
         );
     }
 
-
-
-
     @GetMapping("email")
     @Operation(summary = "Получение пользователей по email", description = " Исключительно поиск по email")
     public ResponseEntity<UserDtoResponse> getUserByEmail(@RequestParam String email) {
@@ -59,11 +56,6 @@ public class UserController {
     public ResponseEntity<UserDtoResponse> getUserName(@RequestParam String name) {
         return ResponseEntity.ok(UserDTOMapper.userEntityToDTOResponse(userService.findByUsername(name)));
     }
-    @PostMapping("/delete")
-    @Operation(summary = "Удаление пользователей")
-    public ResponseEntity<UserDtoResponse> deleteUser(@RequestParam Long id) {
-        return ResponseEntity.ok(UserDTOMapper.userEntityToDTOResponse(userService.deleteUser(id)));
-    }
 
     @GetMapping(value = "/get-all-users")
     @Operation(summary = "Получение всех пользователей")
@@ -75,8 +67,8 @@ public class UserController {
     }
 
     @PutMapping("/update-user-name")
-    public ResponseEntity<UserDtoResponse> updateUsername(@RequestParam String username, @RequestParam String newusername) {
-        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.updateUsername(username, newusername));
+    public ResponseEntity<UserDtoResponse> updateUsername(@RequestParam String username, @RequestParam String newUsername) {
+        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.updateUsername(username, newUsername));
         return ResponseEntity.ok(user);
     }
 
@@ -87,21 +79,22 @@ public class UserController {
     }
 
     @DeleteMapping("/delete-user-by-id/{id}")
-    public ResponseEntity<UserDtoResponse> deleteUserById(@PathVariable Long id) {
-        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.findById(id).orElse(null));
-        return ResponseEntity.ok(user);
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
+        Optional<UserEntity> userEntity = userService.findById(id);
+        userService.deleteUser(id);
+        return ResponseEntity.ok("Пользователь удален");
     }
 
     @DeleteMapping("/delete-user-by-name")
-    public ResponseEntity<UserDtoResponse> deleteUserByName(@RequestParam String name) {
-        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.findByUsername(name));
-        return ResponseEntity.ok(user);
+    public ResponseEntity<String> deleteUserByName(@RequestParam String username) {
+        userService.deleteUserByName(username);
+        return ResponseEntity.ok("Пользователь удален");
     }
 
     @DeleteMapping("/delete-user-by-email")
-    public ResponseEntity<UserDtoResponse> deleteUserByEmail(@RequestParam String email) {
-        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.findByEmail(email));
-        return ResponseEntity.ok(user);
+    public ResponseEntity<String> deleteUserByEmail(@RequestParam String email) {
+        userService.deleteUserByEmail(email);
+        return ResponseEntity.ok("Пользователь удален");
     }
 
 
@@ -113,6 +106,7 @@ public class UserController {
         roleService.addRoleToUserByTitle(title, user_id);
         return ResponseEntity.ok("Роль '" + title + "' добавлена пользователю: " + userDTO.get().getUsername());
     }
+
     @DeleteMapping("/delete-user-role")
     @Operation(summary = "Удаление роли пользователя", description = "Работает по id роли, то есть удаляется не пользователь а именно его роль, данные пользователя должны остаться ")
     public ResponseEntity<String> deleteUserRole(@RequestParam Long user_id, @RequestParam Long role_id) {

@@ -55,23 +55,14 @@
             <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
-<<<<<<< HEAD
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>6.6.5.Final</version>
-=======
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-database-postgresql</artifactId>
             <version>10.14.0</version>
->>>>>>> 429684179982221e2eb8305224e3f3cacfac34b8
         </dependency>
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
         </dependency>
-
-
-
     </dependencies>
 
 
