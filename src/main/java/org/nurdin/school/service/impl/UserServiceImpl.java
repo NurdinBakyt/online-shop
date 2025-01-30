@@ -1,5 +1,6 @@
 package org.nurdin.school.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.nurdin.school.dto.UserDTO;
 import org.nurdin.school.entity.RoleEntity;
 import org.nurdin.school.entity.UserEntity;
@@ -38,12 +39,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findById(Long id) {
-        return null;
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public UserEntity findByUsername(String email) {
-        return null;
+    public UserEntity findByUsername(String name) {
+        return userRepository.findByUsername(name);
     }
 
     @Override
@@ -52,28 +53,45 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity updateUser(UserEntity user) {
-        return null;
+    public UserEntity updateUserName(String username, String newUsername) {
+        UserEntity user = userRepository.findByUsername(username);
+        user.setUsername(newUsername);
+        return userRepository.save(user);
     }
 
+
     @Override
-    public UserEntity updatePassword(UserEntity user, String newPassword) {
-        return null;
+    public UserEntity updateUserPassword(String email, String newPassword) {
+        UserEntity user = userRepository.findByEmail(email);
+        user.setPassword(newPassword);
+        return userRepository.save(user);
     }
 
     @Override
     public UserEntity deleteUser(Long id) {
-        return null;
+        UserEntity user = userRepository.findById(id).orElse(null);
+        if(user != null) {
+            userRepository.delete(user);
+        }
+        return user;
     }
 
     @Override
-    public UserEntity deleteUserByUsername(String username) {
-        return null;
+    public UserEntity deleteUserByName(String username) {
+        UserEntity user = userRepository.findByUsername(username);
+        if(user != null) {
+            userRepository.delete(user);
+        }
+        return user;
     }
 
     @Override
     public UserEntity deleteUserByEmail(String email) {
-        return null;
+        UserEntity user = userRepository.findByEmail(email);
+        if(user != null) {
+            userRepository.delete(user);
+        }
+        return user;
     }
 
     @Override

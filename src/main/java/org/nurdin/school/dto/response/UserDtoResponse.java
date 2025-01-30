@@ -51,7 +51,7 @@ public class UserDtoResponse {
         this.roles = roles;
     }
 
-    public String getUsername() {
+    public String getUserName() {
         return username;
     }
 

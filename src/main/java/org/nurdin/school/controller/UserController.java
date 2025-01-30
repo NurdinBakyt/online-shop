@@ -29,9 +29,19 @@ public class UserController {
         );
     }
 
-    @GetMapping("email")
+    @GetMapping("/get-by-email")
     public ResponseEntity<UserDtoResponse> getUserByEmail(@RequestBody String email) {
         return ResponseEntity.ok(UserDTOMapper.userEntityToDTOResponse(userService.findByEmail(email)));
+    }
+
+    @GetMapping("/get-by-id")
+    public ResponseEntity<UserDtoResponse> getUserById(@RequestBody String id) {
+        return ResponseEntity.ok(UserDTOMapper.userEntityToDTOResponse(userService.findById(Long.parseLong(id))));
+    }
+
+    @GetMapping("/get-by-name")
+    public ResponseEntity<UserDtoResponse> getUserName(@RequestParam String name){
+        return ResponseEntity.ok(UserDTOMapper.userEntityToDTOResponse(userService.findByUsername(name)));
     }
 
     @GetMapping(value = "/get-all-users")
@@ -41,5 +51,38 @@ public class UserController {
                 .map(UserDTOMapper::userEntityToDTOResponse)
                 .toList();
     }
+
+    @PutMapping("/update-user-name")
+    public ResponseEntity<UserDtoResponse> updateUserName(@RequestBody String userName, String newUsername) {
+        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.updateUserName(userName, newUsername));
+        return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/update-user-password")
+    public ResponseEntity<UserDtoResponse> updatePassword(@RequestBody String email, String newPassword) {
+        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.updateUserPassword(email,newPassword));
+        return ResponseEntity.ok(user);
+    }
+
+    @DeleteMapping("/delete-user-by-id/{id}")
+    public ResponseEntity<UserDtoResponse> deleteUserById(@PathVariable Long id) {
+        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.findById(id));
+        return ResponseEntity.ok(user);
+    }
+
+    @DeleteMapping("/delete-user-by-name")
+    public ResponseEntity<UserDtoResponse> deleteUserByName(@RequestBody String name) {
+        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.findByUsername(name));
+        return ResponseEntity.ok(user);
+    }
+
+    @DeleteMapping("/delete-user-by-email")
+    public ResponseEntity<UserDtoResponse> deleteUserByEmail(@RequestBody String email) {
+        UserDtoResponse user = UserDTOMapper.userEntityToDTOResponse(userService.findByEmail(email));
+        return ResponseEntity.ok(user);
+    }
+
+
+
 
 }
