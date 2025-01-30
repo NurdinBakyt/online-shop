@@ -13,7 +13,7 @@ public class CorsConfigure {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000", "http://127.0.0.1:3000", "http://192.168.68.213:3000","http://192.168.88.71","https://editor.swagger.io/")
+                        .allowedOrigins("http://localhost:3000", "http://127.0.0.1:3000", "http://192.168.0.106","https://editor.swagger.io/")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
