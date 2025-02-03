@@ -1,10 +1,13 @@
 package org.nurdin.school.entity;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import org.nurdin.school.enums.StatusOfBid;
 
 @Entity
-@Table (name = "bids-for-work")
+@Table (name = "bids_for_work")
+@Schema(description = "Заявка на работу")
 public class BidForWorkEntity {
 
     @Id
@@ -19,12 +22,14 @@ public class BidForWorkEntity {
         this.id = id;
     }
 
-    @Column(name = "info-of-employee")
+    @Column(name = "info_of_employee")
     private String infoOfEmployee;
-    @Column(name = "documents-of-employee")
+    @Column(name = "documents_of_employee")
+    @Schema(description = "Документы сотрудника")
     private String documentsOfEmployee;
-    @Column(name = "bid-status")
-    private String bidStatus;
+    @Column(name = "bid_status")
+    @Schema(description = "Статус заявка, по типу откланён или принят")
+    private StatusOfBid bidStatus;
 
     @Column(name = "email")
     private String email;
@@ -37,11 +42,11 @@ public class BidForWorkEntity {
         this.email = email;
     }
 
-    public String getBidStatus() {
+    public StatusOfBid getBidStatus() {
         return bidStatus;
     }
 
-    public void setBidStatus(String bidStatus) {
+    public void setBidStatus(StatusOfBid bidStatus) {
         this.bidStatus = bidStatus;
     }
 

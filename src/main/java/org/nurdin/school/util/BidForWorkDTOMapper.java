@@ -9,8 +9,9 @@ public class BidForWorkDTOMapper {
     //метод который BidForWorkDTO преобразует в BidForWorkEntity
     public static BidForWorkEntity bidForWorkDtoToEntity (BidForWorkDTO bidForWorkDTO) {
         BidForWorkEntity bidForWorkEntity = new BidForWorkEntity();
-        bidForWorkEntity.setDocumentsOfEmployee(bidForWorkDTO.getDocumentsOfEmployee());
-        bidForWorkEntity.setInfoOfEmployee(bidForWorkDTO.getInfoOfEmployee());
+        bidForWorkEntity.setId(bidForWorkDTO.getId());
+        bidForWorkEntity.setBidStatus(bidForWorkDTO.getBid_status());
+        bidForWorkEntity.setDocumentsOfEmployee(bidForWorkDTO.getDocuments_of_employee());;
         bidForWorkEntity.setEmail(bidForWorkDTO.getEmail());
         return bidForWorkEntity;
     }
