@@ -16,6 +16,12 @@ public class NewsEntity extends BaseEntity {
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    // private String imageName;
+    // private String imageType;
+
+    // @Lob
+    // private byte[] imageDate;
+
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
