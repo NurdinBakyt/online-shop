@@ -80,10 +80,13 @@ public class UserController {
 
     @DeleteMapping("/delete-user-by-id/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
-        Optional<UserEntity> userEntity = userService.findById(id);
+        UserEntity user = userService.findById(id)
+                .orElseThrow(() -> new RuntimeException("Пользователь с ID " + id + " не найден"));
+
         userService.deleteUser(id);
-        return ResponseEntity.ok("Пользователь удален");
+        return ResponseEntity.ok("Пользователь " + user.getUsername() + " удален");
     }
+
 
     @DeleteMapping("/delete-user-by-name")
     public ResponseEntity<String> deleteUserByName(@RequestParam String username) {
@@ -101,10 +104,11 @@ public class UserController {
     @PostMapping("/add-role-to-user-by-title")
     @Operation(summary = "Добавление роли по названию ")
     public ResponseEntity<String> addRoleByTitle(@RequestParam String title, @RequestParam Long user_id) {
-        Optional<UserEntity> userDTO = userService.findById(user_id);
+        UserEntity user = userService.findById(user_id)
+                .orElseThrow(() -> new RuntimeException("Пользователь с ID " + user_id + " не найден"));
 
         roleService.addRoleToUserByTitle(title, user_id);
-        return ResponseEntity.ok("Роль '" + title + "' добавлена пользователю: " + userDTO.get().getUsername());
+        return ResponseEntity.ok("Роль '" + title + "' добавлена пользователю: " + user.getUsername());
     }
 
     @DeleteMapping("/delete-user-role")
