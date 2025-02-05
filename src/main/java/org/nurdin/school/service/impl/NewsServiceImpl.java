@@ -8,7 +8,9 @@ import org.nurdin.school.repository.NewsRepository;
 import org.nurdin.school.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -25,7 +27,10 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public NewsEntity addNews(NewsEntity news) {
+    public NewsEntity addNews(NewsEntity news, MultipartFile imageFile) throws IOException {
+        news.setImageName(imageFile.getOriginalFilename());
+        news.setImageType(imageFile.getContentType());
+        news.setImageDate(imageFile.getBytes());
         return newsRepository.save(news);
     }
 
