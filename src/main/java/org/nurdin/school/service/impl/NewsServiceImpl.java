@@ -1,13 +1,20 @@
 package org.nurdin.school.service.impl;
 
+import org.nurdin.school.dto.NewsDto;
+import org.nurdin.school.dto.RoleDTO;
+import org.nurdin.school.dto.response.UserDtoResponse;
 import org.nurdin.school.entity.NewsEntity;
 import org.nurdin.school.repository.NewsRepository;
 import org.nurdin.school.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -20,13 +27,33 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public NewsEntity addNews(NewsEntity news) {
+    public NewsEntity addNews(NewsEntity news, MultipartFile imageFile) throws IOException {
+        news.setImageName(imageFile.getOriginalFilename());
+        news.setImageType(imageFile.getContentType());
+        news.setImageDate(imageFile.getBytes());
         return newsRepository.save(news);
     }
 
     @Override
-    public List<NewsEntity> getAllNews() {
-        return newsRepository.findAll();
+    public List<NewsDto> getAllNews() {
+        List<NewsEntity> newsEntities = newsRepository.findAll();
+        return newsEntities.stream().map(entity -> {
+            NewsDto dto = new NewsDto();
+            Set<RoleDTO> roleDTOSet = entity.getAuthor().getRoles().stream()
+                .map(role -> new RoleDTO(role.getId(), role.getTitle()))
+                .collect(Collectors.toSet());
+
+            UserDtoResponse userDtoResponse = new UserDtoResponse(
+                entity.getAuthor().getId(),
+                roleDTOSet
+            );
+            dto.setId(entity.getId());
+            dto.setNewsTitle(entity.getTitle());
+            dto.setNewsContent(entity.getContent());
+            dto.setDateTime(entity.getDate());
+            dto.setAuthor(userDtoResponse);
+            return dto;
+        }).toList();
     }
 
     @Override
